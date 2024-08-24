@@ -79,7 +79,8 @@ def plot_cspoly(
         xvalues = mdates.date2num(xvalues)
 
     high, low = data.high, data.low
-    change = data.close.pct_change()
+    change = data.close - data.open
+    # change = data.close.pct_change()
     bottom = np.minimum(data.open, data.close)
     top = np.maximum(data.open, data.close)
 
@@ -138,7 +139,8 @@ def plot_csbars(
     xvalues = data.index.values
 
     high, low = data.high, data.low
-    change = data.close.pct_change()
+    change = data.close - data.open
+    # change = data.close.pct_change()
     upper = np.maximum(data.open, data.close)
     lower = np.minimum(data.open, data.close)
 
