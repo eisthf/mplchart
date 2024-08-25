@@ -404,7 +404,7 @@ class Chart:
             if handles:
                 ax.legend(loc="upper left")
 
-    def plot(self, prices, indicators, *, target=None, rebase=False):
+    def plot(self, prices, indicators, *, target=None, rebase=False, refdate: str|None=None):
         """plots a list of indicators
 
         Parameters
@@ -427,7 +427,17 @@ class Chart:
         for indicator in indicators:
             self.plot_indicator(prices, indicator)
 
+        # ax = self.get_axes("main")
+        # xv = self.map_date(refdate)
+        # ax.axvline(xv, linestyle="solid", color='r')
+        if refdate:
+            ax = self.root_axes()
+            xv = self.map_date(refdate)
+            ax.axvline(xv, linestyle='-.', linewidth=1.5, color='y')
+
         self.add_legends()
+
+		
 
     def plot_vline(self, date):
         """plots a vertical line across all axes"""
